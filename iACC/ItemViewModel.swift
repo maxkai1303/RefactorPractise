@@ -10,17 +10,6 @@ struct ItemViewModel {
     //Step2.1 我們在這裡加一個 closure 讓外面的人提供這段邏輯給我
     let select: () -> Void
     
-    init(_ item: Any, longDateStyle: Bool, selection: @escaping () -> Void) {
-        if let friend = item as? Friend {
-            self.init(friend: friend, selection: selection)
-        } else if let card = item as? Card {
-            self.init(card: card, selection: selection)
-        } else if let transfer = item as? Transfer {
-            self.init(transfer: transfer, longDateStyle: longDateStyle, selection: selection)
-        } else {
-            fatalError("unknown item: \(item)")
-        }
-    }
     // Step1.2 移除 Any type
     init(friend: Friend, selection: @escaping () -> Void) {
         title = friend.name
